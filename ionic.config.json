@@ -1,0 +1,7 @@
+{
+  "name": "OuterHeavens",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
