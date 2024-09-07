@@ -1,20 +1,59 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      OuterHeaven Producciones
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <h1>Bienvenido a OuterHeaven Productions!</h1>
+    <p>En esta aplicación podrás encontrar información sobre los eventos que realizamos, así como también podrás comprar tus entradas para los mismos.</p>
+    <br>
+    
+    <ion-list>
+      <ion-item>
+        <ion-input label="Nombre" labelPlacement="stacked" [(ngModel)]="name" placeholder="Ingresa tu Nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Apellido" labelPlacement="stacked" [(ngModel)]="lastName" placeholder="Ingresa tu Apellido"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Correo Electrónico" labelPlacement="stacked" [(ngModel)]="email" placeholder="Ingresa tu Correo Electrónico"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Fec. Nac." [(ngModel)]="birthday" [value]="birthday | date: 'dd-MM-yyyy'"></ion-input>
+      <ion-button fill="clear" id="open-datetime">
+          <ion-icon size="large" slot="icon-only" name="calendar"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="open-datetime" triggerAction="click">
+          <ng-template>
+              <ion-datetime [(ngModel)]="birthday" locale="es-ES"
+                            [showDefaultButtons]="true" presentation="date">
+              </ion-datetime>
+          </ng-template>
+      </ion-popover>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Tipo de Eventos" labelPlacement="stacked" [(ngModel)]="eventType" (ionChange)="onEventTypeChange()" placeholder="Seleccione un tipo de evento">
+          <ion-select-option value="concert">Conciertos</ion-select-option>
+          <ion-select-option value="theatre">Teatro</ion-select-option>
+          <ion-select-option value="sports">Deportes</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Eventos" labelPlacement="stacked" [(ngModel)]="selectedEvent" [disabled]="isEventsDisabled" placeholder="Seleccione un evento">
+          <ion-select-option *ngFor="let event of events" [value]="event">{{event}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    {{eventType}}
+    {{selectedEvent}}
+    {{name}}
+    {{lastName}}
+    {{email}}
+    {{birthday}}
   </div>
 </ion-content>
