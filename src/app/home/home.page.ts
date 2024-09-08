@@ -10,8 +10,7 @@ export class HomePage {
   name!: string;
   lastName!: string;
   email!: string;
-  birthday!: string; // Asegúrate de que sea un string en formato 'YYYY-MM-DD' o similar
-  age!: number;
+  birthday!: string;
 
   eventType!: string;
   selectedEvent!: string;
@@ -38,10 +37,25 @@ export class HomePage {
       year: 'numeric'
     }) : '';
   }
+  get age(): number | undefined {
+    if (!this.birthday) {
+      return undefined;
+    }
+  
+    const today = new Date();
+    const birthDate = new Date(this.birthday);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+  
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+  
+    return age;
+  }
 
-  // Maneja el cambio de fecha
   onDateChange(event: any) {
-    this.birthday = event.detail.value; // Guarda la fecha seleccionada en formato ISO
+    this.birthday = event.detail.value;
   }
 
   onEventTypeChange() {

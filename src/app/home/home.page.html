@@ -1,14 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      OuterHeaven Producciones
+      OuterHeaven Productions
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <h1>Bienvenido a OuterHeaven Productions!</h1>
+    <h1>Bienvenido a Producciones OuterHeaven!</h1>
     <p>En esta aplicación podrás encontrar información sobre los eventos que realizamos, así como también podrás comprar tus entradas para los mismos.</p>
     <br>
     
@@ -23,7 +23,7 @@
         <ion-input label="Correo Electrónico" labelPlacement="stacked" [(ngModel)]="email" placeholder="Ingresa tu Correo Electrónico"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Fec. Nac." labelPlacement="stacked" [value]="formattedBirthday" readonly placeholder="Ingrese su Fecha de Nacimiento"></ion-input>
+        <ion-input label="Fecha Nacimiento" labelPlacement="stacked" [value]="formattedBirthday" readonly placeholder="Ingrese su Fecha de Nacimiento"></ion-input>
         <ion-button fill="clear" id="open-datetime">
             <ion-icon size="large" slot="icon-only" name="calendar"></ion-icon>
         </ion-button>
@@ -55,6 +55,7 @@
       <p>Apellido: {{lastName}}</p>
       <p>Correo Electrónico: {{email}}</p>
       <p>Fecha de Nacimiento: {{formattedBirthday}}</p>
+      <p>Edad:{{age}}</p>
     </div>
   </div>
 </ion-content>
