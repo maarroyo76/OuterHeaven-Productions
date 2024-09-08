@@ -202,7 +202,7 @@ export class HomePage {
   async onClear() {
     this.clearForm();
     this.closeModal();
-    this.showToastMessage('Formulario limpiado', 'danger');
+    this.showToastMessage('Compra cancelada', 'danger');
   }
 
   async showToastMessage(message: string, color: string){
