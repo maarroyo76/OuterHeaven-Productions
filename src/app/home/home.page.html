@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+    <ion-title id="header">
       OuterHeaven Productions
     </ion-title>
   </ion-toolbar>
@@ -8,10 +8,10 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <h1>Bienvenido a Producciones OuterHeaven!</h1>
-    <p>En esta aplicación podrás encontrar información sobre los eventos que realizamos, así como también podrás comprar tus entradas para los mismos.</p>
+    <h1 id="title">Bienvenido a Producciones OuterHeaven!</h1>
+    <p id="subtitle">En esta aplicación podrás encontrar información sobre los eventos que realizamos, así como también podrás comprar tus entradas para los mismos.</p>
+    <h2>Compra de Tickets</h2>
     <br>
-    
     <ion-list>
       <ion-item>
         <ion-input label="Nombre" labelPlacement="stacked" [(ngModel)]="name" placeholder="Ingresa tu Nombre"></ion-input>
@@ -42,20 +42,41 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-select label="Eventos" labelPlacement="stacked" [(ngModel)]="selectedEvent" [disabled]="isEventsDisabled" placeholder="Seleccione un evento">
-          <ion-select-option *ngFor="let event of events" [value]="event">{{event}}</ion-select-option>
+        <ion-select label="Eventos" labelPlacement="stacked" [(ngModel)]="selectedEvent" (ionChange)="onEventChange()" [disabled]="isEventsDisabled" placeholder="Seleccione un evento">
+          <ion-select-option *ngFor="let event of events" [value]="event.name">{{event.name}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
-
-    <div>
-      <p>Tipo de Evento Seleccionado: {{eventType}}</p>
-      <p>Evento Seleccionado: {{selectedEvent}}</p>
-      <p>Nombre: {{name}}</p>
-      <p>Apellido: {{lastName}}</p>
-      <p>Correo Electrónico: {{email}}</p>
-      <p>Fecha de Nacimiento: {{formattedBirthday}}</p>
-      <p>Edad:{{age}}</p>
-    </div>
+    <br>
+    <ion-button expand="block" (click)="openModal()" [disabled]="!isFormComplete()">
+      Proceder a Pagar
+    </ion-button>
+    <br>
+    
+    <ion-modal [isOpen]="isModalOpen" (willDismiss)="closeModal()">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Detalle del Ticket</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="closeModal()">Cerrar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <div id="ticketDetail">
+            <h2>Detalles del Ticket</h2>
+            <p><strong>Nombre:</strong> {{ name }} {{ lastName }}</p>
+            <p><strong>Correo Electrónico:</strong> {{ email }}</p>
+            <p><strong>Evento:</strong> {{ selectedEvent }}</p>
+            <p><strong>Precio del Ticket:</strong> {{ ticketPrice }} CLP</p>
+            <p><strong>Descuento:</strong> {{ discount * 100 }}%</p>
+            <p><strong>Total a Pagar:</strong> {{ total }} CLP</p><br>
+            <ion-button color="success" expand="block"(click)="onBuy()"> Confirmar compra</ion-button><br>
+            <ion-button color="danger" expand="block" (click)="onClear()"> Cancelar compra</ion-button>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>

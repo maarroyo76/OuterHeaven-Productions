@@ -2,7 +2,6 @@
   position: absolute;
   left: 5%;
   right: 5%;
-  top: 5%;
 }
 
 #container strong {
@@ -23,10 +22,18 @@
 
 #container h1 {
   text-align: center;
-  margin-top: 10%;
-  margin-bottom: 10%;
 }
 
 #container a {
   text-decoration: none;
+}
+
+#ticketDetail  {
+  margin-top: 10%;
+  left: 5%;
+  right: 5%;
+  top: 5%;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
 }
