@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,14 @@ export class HomePage {
   name!: string;
   lastName!: string;
   email!: string;
-  birthday!: string;
+  birthday!: string; // Asegúrate de que sea un string en formato 'YYYY-MM-DD' o similar
   age!: number;
 
   eventType!: string;
   selectedEvent!: string;
   events: string[] = [];
-  isEventsDisabled: boolean = true; 
+  isEventsDisabled: boolean = true;
+
   private getEventOptions(eventType: string): string[] {
     switch (eventType) {
       case 'concert':
@@ -28,10 +30,22 @@ export class HomePage {
         return [];
     }
   }
+  
+  get formattedBirthday(): string {
+    return this.birthday ? new Date(this.birthday).toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }) : '';
+  }
+
+  // Maneja el cambio de fecha
+  onDateChange(event: any) {
+    this.birthday = event.detail.value; // Guarda la fecha seleccionada en formato ISO
+  }
 
   onEventTypeChange() {
     this.events = this.getEventOptions(this.eventType);
     this.isEventsDisabled = this.events.length === 0;
   }
 }
-

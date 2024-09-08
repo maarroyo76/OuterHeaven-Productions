@@ -23,17 +23,16 @@
         <ion-input label="Correo Electrónico" labelPlacement="stacked" [(ngModel)]="email" placeholder="Ingresa tu Correo Electrónico"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Fec. Nac." [(ngModel)]="birthday" [value]="birthday | date: 'dd-MM-yyyy'"></ion-input>
-      <ion-button fill="clear" id="open-datetime">
-          <ion-icon size="large" slot="icon-only" name="calendar"></ion-icon>
-      </ion-button>
-      <ion-popover trigger="open-datetime" triggerAction="click">
-          <ng-template>
-              <ion-datetime [(ngModel)]="birthday" locale="es-ES"
-                            [showDefaultButtons]="true" presentation="date">
-              </ion-datetime>
-          </ng-template>
-      </ion-popover>
+        <ion-input label="Fec. Nac." labelPlacement="stacked" [value]="formattedBirthday" readonly placeholder="Ingrese su Fecha de Nacimiento"></ion-input>
+        <ion-button fill="clear" id="open-datetime">
+            <ion-icon size="large" slot="icon-only" name="calendar"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="open-datetime" triggerAction="click">
+            <ng-template>
+                <ion-datetime [(ngModel)]="birthday" (ionChange)="onDateChange($event)" locale="es-ES" presentation="date" [showDefaultButtons]="true">
+                </ion-datetime>
+            </ng-template>
+        </ion-popover>
       </ion-item>
       <ion-item>
         <ion-select label="Tipo de Eventos" labelPlacement="stacked" [(ngModel)]="eventType" (ionChange)="onEventTypeChange()" placeholder="Seleccione un tipo de evento">
@@ -49,11 +48,13 @@
       </ion-item>
     </ion-list>
 
-    {{eventType}}
-    {{selectedEvent}}
-    {{name}}
-    {{lastName}}
-    {{email}}
-    {{birthday}}
+    <div>
+      <p>Tipo de Evento Seleccionado: {{eventType}}</p>
+      <p>Evento Seleccionado: {{selectedEvent}}</p>
+      <p>Nombre: {{name}}</p>
+      <p>Apellido: {{lastName}}</p>
+      <p>Correo Electrónico: {{email}}</p>
+      <p>Fecha de Nacimiento: {{formattedBirthday}}</p>
+    </div>
   </div>
 </ion-content>
