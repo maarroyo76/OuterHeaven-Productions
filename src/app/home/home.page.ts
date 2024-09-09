@@ -159,6 +159,8 @@ export class HomePage {
       this.discount = 0.25;
     } else if (this.age && this.age > 25 && this.age <= 40) {
       this.discount = 0.1;
+    }else if (this.age && this.age > 40 && this.age <= 65) {
+      this.discount = 0.2;
     }else if (this.age && this.age > 65) {
       this.discount = 0.3;
     }else if (this.age && this.age > 80) {
