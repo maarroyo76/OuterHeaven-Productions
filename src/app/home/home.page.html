@@ -46,6 +46,15 @@
           <ion-select-option *ngFor="let event of events" [value]="event.name">{{event.name}}</ion-select-option>
         </ion-select>
       </ion-item>
+      <ion-item>
+        <ion-button slot="start" (click)="decrease()">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-input type="number" [(ngModel)]="ticketQuantity"></ion-input>
+        <ion-button slot="end" (click)="increase()">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
     </ion-list>
     <br>
     <ion-button expand="block" (click)="openModal()" [disabled]="!isFormComplete()">
@@ -70,7 +79,9 @@
             <p><strong>Correo Electrónico:</strong> {{ email }}</p>
             <p><strong>Evento:</strong> {{ selectedEvent }}</p>
             <p><strong>Precio del Ticket:</strong> {{ ticketPrice }} CLP</p>
-            <p><strong>Descuento:</strong> {{ discount * 100 }}%</p>
+            <p><strong>Cantidad de Tickets:</strong> {{ ticketQuantity }}</p>
+            <p><strong>Subtotal:</strong> {{ subtotal }} CLP</p>
+            <p><strong>Descuento por edad:</strong> {{ discount * 100 }}%</p>
             <p><strong>Total a Pagar:</strong> {{ total }} CLP</p><br>
             <ion-button color="success" expand="block"(click)="onBuy()"> Confirmar compra</ion-button><br>
             <ion-button color="danger" expand="block" (click)="onClear()"> Cancelar compra</ion-button>

@@ -18,6 +18,8 @@ export class HomePage {
   events: {name: string, price: number}[] = [];
   isEventsDisabled: boolean = true;
   ticketPrice: number = 0;
+  ticketQuantity: number = 1;
+  subtotal: number = 0;
   discount: number = 0;
   total: number = 0;
 
@@ -156,20 +158,28 @@ export class HomePage {
     if (this.age && this.age < 18) {
       this.discount = 0.5;
     } else if (this.age && this.age >= 18 && this.age <= 25) {
-      this.discount = 0.25;
-    } else if (this.age && this.age > 25 && this.age <= 40) {
-      this.discount = 0.1;
-    }else if (this.age && this.age > 40 && this.age <= 50) {
       this.discount = 0.2;
-    }else if (this.age && this.age > 65) {
+    } else if (this.age && this.age > 25 && this.age <= 30) {
+      this.discount = 0.1;
+    }else if (this.age && this.age > 65)
       this.discount = 0.3;
-    }else if (this.age && this.age > 80) {
-      this.discount = 0.5;
+  }
+
+  increase(){
+    this.ticketQuantity++;
+    console.log(this.ticketQuantity);
+  }
+
+  decrease(){
+    if(this.ticketQuantity > 1){
+      this.ticketQuantity--;
+      console.log(this.ticketQuantity);
     }
   }
 
   calculateTotal() {
-    this.total = this.ticketPrice - (this.ticketPrice * this.discount);
+    this.subtotal = this.ticketPrice * this.ticketQuantity;
+    this.total = this.subtotal - (this.subtotal * this.discount);
   }
 
   openModal() {
@@ -198,7 +208,7 @@ export class HomePage {
   async onBuy() {
     this.clearForm();
     this.closeModal();
-    this.showToastMessage('Compra realizada', 'success');
+    this.showToastMessage('Compra realizada con exito!', 'success');
   }
 
   async onClear() {
