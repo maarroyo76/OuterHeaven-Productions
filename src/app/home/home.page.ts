@@ -17,9 +17,13 @@ export class HomePage {
   selectedEvent!: string;
   events: {name: string, price: number}[] = [];
   isEventsDisabled: boolean = true;
+
   ticketPrice: number = 0;
+  ticketType: string = '';
+  isTicketTypeDisabled: boolean = true;
   ticketQuantity: number = 1;
   subtotal: number = 0;
+  totalDiscount: number = 0;
   discount: number = 0;
   total: number = 0;
 
@@ -152,6 +156,19 @@ export class HomePage {
   onEventChange() {
     const event = this.events.find(e => e.name === this.selectedEvent);
     this.ticketPrice = event ? event.price : 0;
+
+    this.isTicketTypeDisabled = !this.selectedEvent;
+  }
+
+  ticketTypeChange() {
+    switch (this.ticketType) {
+      case 'VIP':
+        this.ticketPrice = this.ticketPrice * 1.5;
+        break;
+      case 'Preferencial':
+        this.ticketPrice = this.ticketPrice * 1.25;
+        break;
+    }
   }
 
   calculateDiscount() {
@@ -166,20 +183,22 @@ export class HomePage {
   }
 
   increase(){
-    this.ticketQuantity++;
-    console.log(this.ticketQuantity);
+    if(this.ticketQuantity < 10){
+      this.ticketQuantity++;
+    }
   }
 
   decrease(){
     if(this.ticketQuantity > 1){
       this.ticketQuantity--;
-      console.log(this.ticketQuantity);
     }
   }
 
   calculateTotal() {
+    this.ticketTypeChange();
     this.subtotal = this.ticketPrice * this.ticketQuantity;
-    this.total = this.subtotal - (this.subtotal * this.discount);
+    this.totalDiscount = this.subtotal * this.discount;
+    this.total = this.subtotal - this.totalDiscount;
   }
 
   openModal() {
@@ -203,6 +222,11 @@ export class HomePage {
     this.ticketPrice = 0;
     this.discount = 0;
     this.total = 0;
+    this.ticketType = '';
+    this.isTicketTypeDisabled = true;
+    this.ticketQuantity = 1;
+    this.subtotal = 0;
+    this.totalDiscount = 0;
   }
 
   async onBuy() {

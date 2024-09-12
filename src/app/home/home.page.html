@@ -11,7 +11,6 @@
     <h1 id="title">Bienvenido a Producciones OuterHeaven!</h1>
     <p id="subtitle">En esta aplicación podrás encontrar información sobre los eventos que realizamos, así como también podrás comprar tus entradas para los mismos.</p>
     <h2>Compra de Tickets</h2>
-    <br>
     <ion-list>
       <ion-item>
         <ion-input label="Nombre" labelPlacement="stacked" [(ngModel)]="name" placeholder="Ingresa tu Nombre"></ion-input>
@@ -47,6 +46,13 @@
         </ion-select>
       </ion-item>
       <ion-item>
+        <ion-select label="Tipo de Entrada" labelPlacement="stacked" placeholder="Seleccione tipo de entrada" [(ngModel)]="ticketType" [disabled]="isTicketTypeDisabled">
+          <ion-select-option value="General">General</ion-select-option>
+          <ion-select-option value="Preferencial">Preferencial</ion-select-option>
+          <ion-select-option value="VIP">VIP</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
         <ion-button slot="start" (click)="decrease()">
           <ion-icon name="remove-circle-outline"></ion-icon>
         </ion-button>
@@ -78,10 +84,12 @@
             <p><strong>Nombre:</strong> {{ name }} {{ lastName }}</p>
             <p><strong>Correo Electrónico:</strong> {{ email }}</p>
             <p><strong>Evento:</strong> {{ selectedEvent }}</p>
+            <p><strong>Tipo de Ticket:</strong> {{ ticketType }}</p>
             <p><strong>Precio del Ticket:</strong> {{ ticketPrice }} CLP</p>
             <p><strong>Cantidad de Tickets:</strong> {{ ticketQuantity }}</p>
             <p><strong>Subtotal:</strong> {{ subtotal }} CLP</p>
             <p><strong>Descuento por edad:</strong> {{ discount * 100 }}%</p>
+            <p><strong>Total Descuento:</strong> {{totalDiscount}} CLP</p>
             <p><strong>Total a Pagar:</strong> {{ total }} CLP</p><br>
             <ion-button color="success" expand="block"(click)="onBuy()"> Confirmar compra</ion-button><br>
             <ion-button color="danger" expand="block" (click)="onClear()"> Cancelar compra</ion-button>
