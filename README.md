@@ -11,4 +11,4 @@ Esta aplicación permite comprar tickets para eventos como conciertos, teatro y 
 
 ## Tecnologías
 
-- **Ionic Framework**: Utilizado para construir la app con componentes web y animaciones.
+- **Ionic Framework**: Utilizado para construir la app con componentes web y funcionalidades nativas.
