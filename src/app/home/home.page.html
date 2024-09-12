@@ -10,8 +10,8 @@
   <div id="container">
     <h1 id="title">Bienvenido a Producciones OuterHeaven!</h1>
     <p id="subtitle">En esta aplicación podrás encontrar información sobre los eventos que realizamos, así como también podrás comprar tus entradas para los mismos.</p>
-    <h2>Compra de Tickets</h2>
-    <ion-list>
+    <ion-list id="form">
+      <h2>Compra de Tickets</h2>
       <ion-item>
         <ion-input label="Nombre" labelPlacement="stacked" [(ngModel)]="name" placeholder="Ingresa tu Nombre"></ion-input>
       </ion-item>
@@ -63,7 +63,7 @@
       </ion-item>
     </ion-list>
     <br>
-    <ion-button expand="block" (click)="openModal()" [disabled]="!isFormComplete()">
+    <ion-button expand="block" id="button" (click)="openModal()" [disabled]="!isFormComplete()">
       Proceder a Pagar
     </ion-button>
     <br>
@@ -99,7 +99,7 @@
     </ion-modal>
   </div>
 </ion-content>
-<ion-footer>
+<ion-footer id="footer">
   <ion-toolbar>
     <ion-title id="footer" size="small">
       © 2024 OuterHeaven Productions

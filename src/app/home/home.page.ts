@@ -38,6 +38,9 @@ export class HomePage {
     this.animationHeader();
     this.animationTitle();
     this.animationSubtitle();
+    this.animationForm();
+    this.animationButton();
+    this.animationFooter();
   }
 
   animationHeader() {
@@ -83,6 +86,54 @@ export class HomePage {
         { offset: 0, transform: 'translateY(-100px)', opacity: '0.1' },
         { offset: 0.5, transform: 'translateY(-50px)', opacity: '0.5' },
         { offset: 1, transform: 'translateY(0px)', opacity: '1' },
+      ])
+      .play()
+    }
+  }
+
+  animationForm() {
+    const element = document.getElementById('form');
+    if(element){
+      this.animationController
+      .create()
+      .addElement(element)
+      .duration(1500)
+      .keyframes([
+        { offset: 0, transform: 'translateY(-100px)', opacity: '0.1' },
+        { offset: 0.5, transform: 'translateY(-50px)', opacity: '0.5' },
+        { offset: 1, transform: 'translateY(0px)', opacity: '1' },
+      ])
+      .play()
+    }
+  }
+
+  animationButton() {
+    const element = document.getElementById('button');
+    if(element){
+      this.animationController
+      .create()
+      .addElement(element)
+      .duration(1500)
+      .keyframes([
+        { offset: 0, transform: 'translateY(-100px)', opacity: '0.1' },
+        { offset: 0.5, transform: 'translateY(-50px)', opacity: '0.5' },
+        { offset: 1, transform: 'translateY(0px)', opacity: '1' },
+      ])
+      .play()
+    }
+  }
+
+  animationFooter() {
+    const element = document.getElementById('footer');
+    if(element){
+      this.animationController
+      .create()
+      .addElement(element)
+      .duration(1500)
+      .keyframes([
+        { offset: 0, transform: 'translateX(100px)', opacity: '0.1' },
+        { offset: 0.5, transform: 'translateX(50px)', opacity: '0.5' },
+        { offset: 1, transform: 'translateX(0px)', opacity: '1' },
       ])
       .play()
     }
@@ -151,6 +202,7 @@ export class HomePage {
     this.isEventsDisabled = this.events.length === 0;
     this.selectedEvent = '';
     this.ticketPrice = 0;
+    this.isTicketTypeDisabled = true;
   }
 
   onEventChange() {
@@ -210,6 +262,7 @@ export class HomePage {
   closeModal() {
     this.isModalOpen = false;
   }
+
   clearForm() {
     this.name = '';
     this.lastName = '';
